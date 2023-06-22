@@ -1,0 +1,48 @@
+{"personas":
+[
+    {
+        "id": 1,
+        "nombre": "matías",
+        "apellido": "arguello",
+        "telefonos": [
+            {
+                "tipo": "personal",
+                "numero": "3562381623"
+            },
+            {
+                "tipo": "oficina",
+                "numero": "3562823723"
+            }
+        ],
+        "edad": 36,
+        "esDonante": true,
+        "domicilio": "Tomás Montenegro 335",
+        "coord": {
+            "lat": -23.783923,
+            "long": 12.4232123
+        }
+    },
+    {
+        "id": 2,
+        "nombre": "nano",
+        "apellido": "rossia",
+        "telefonos": [
+            {
+                "tipo": "personal",
+                "numero": "3562381623"
+            },
+            {
+                "tipo": "oficina",
+                "numero": "3562823723"
+            }
+        ],
+        "edad": 36,
+        "esDonante": false,
+        "domicilio": "Rioja 8292",
+        "coord": {
+            "lat": -33.783923,
+            "long": 42.4232123
+        }
+    }
+]
+}

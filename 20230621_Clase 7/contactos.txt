@@ -1,0 +1,19 @@
+nombre --> matías
+apellido --> arguello
+telegono --> 3518089826
+domicilio --> Tomás Montenegro 335
+
+nombre --> fran
+apellido --> fernandez
+telegono --> 35180893214
+domicilio --> La rioja 9
+
+nombre --> nano
+apellido --> rossia
+telegono --> 3583893214
+domicilio --> Cordoba 291
+
+nombre --> nano
+apellido --> rossia
+telegono --> 3583893214
+domicilio --> Cordoba 291

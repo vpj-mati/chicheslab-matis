@@ -1,0 +1,21 @@
+<personas>
+    
+    <persona>
+        <nombre>matías</nombre>
+        <apellido>arguello</apellido>
+        <telefono>3518089826</telefono>
+        <domicilio>
+            Tomás Montenegro 335
+        </domicilio>
+    </persona>
+
+    <persona>
+        <nombre>matías</nombre>
+        <apellido>arguello</apellido>
+        <telefono>3518089826</telefono>
+        <domicilio>
+            Tomás Montenegro 335
+        </domicilio>
+    </persona>
+    
+</personas>
