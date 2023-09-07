@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <h1>Ejemplo JAVA SCRIPT</h1>
+
+
+
+
+
+    <script>
+        
+        const alicIva = 0.105;
+        var totalFactura;
+        var precioGrano;
+        var cantidadGrano;
+
+        totalFactura = 100000;
+        precioGrano = 65000;
+
+        var comision = 0.015;
+        var flete = 5500;
+        var grado = 3;
+        var valorGrado;
+
+
+        if(grado == 1){
+            valorGrado = 0.01;
+        }
+
+        if(grado == 2){
+            valorGrado = 0;
+        }
+        
+        if(grado == 3){
+            valorGrado = -0.015;
+        }
+        
+        
+        var factor = 100;
+        var valorFactor = factor / 100;
+        var precioCalidad = precioGrano * (1 + valorGrado) * valorFactor;
+        var precioOperacion = precioCalidad - precioGrano * comision - flete;
+        var precioFinal = precioOperacion * (1 + alicIva);
+
+        cantidadGrano = totalFactura / precioFinal;
+        console.log("Total a liquidar: " + cantidadGrano.toFixed(3) + "tn");
+
+    </script>
+    
+</body>
+</html>
