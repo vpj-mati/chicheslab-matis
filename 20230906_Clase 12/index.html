@@ -16,29 +16,74 @@
     <script>
         
         const alicIva = 0.105;
+        const factorCorIIBB = 0.8;
+        const sellado = 70;
+
         var totalFactura;
         var precioGrano;
         var cantidadGrano;
+        
+        
+        var totalFac1 = 100000;
+        var difCambioFac1 = 0;
+        var percIVAFac1 = 0;
 
-        totalFactura = 100000;
+        var arrTF = [1000, 9000, 10, 800];
+        
+        //candidata para continuar con la siguiente clase
+        var grill = [
+                        [1000,0,0],
+                        [900,10,0],
+                        [8000,0,0]
+                    ]
+
+        var suma = 0;
+        
+        for (let i = 0; i < arrTF.length; i++) {
+            suma = suma + arrTF[i];
+        }
+        
+        console.log(suma);
+
+        totalFactura = totalFac1 + difCambioFac1 + percIVAFac1 + sellado;
+
         precioGrano = 65000;
 
         var comision = 0.015;
         var flete = 5500;
         var grado = 3;
         var valorGrado;
+        var alicIIBB = 0.008;
+        var tipoGrano = "Trigo";
 
 
-        if(grado == 1){
-            valorGrado = 0.01;
+        if(grado == 1)
+        {
+            if(tipoGrano == "Trigo")
+            {
+                valorGrado = 0.015;
+            }
+            else
+            {
+                valorGrado = 0.01;
+            }   
         }
 
-        if(grado == 2){
+        if(grado == 2)
+        {
             valorGrado = 0;
         }
         
-        if(grado == 3){
-            valorGrado = -0.015;
+        if(grado == 3)
+        {
+            if(tipoGrano == "Trigo")
+            {
+                valorGrado = -0.01;
+            }
+            else
+            {
+                valorGrado = -0.015;
+            }   
         }
         
         
@@ -46,7 +91,9 @@
         var valorFactor = factor / 100;
         var precioCalidad = precioGrano * (1 + valorGrado) * valorFactor;
         var precioOperacion = precioCalidad - precioGrano * comision - flete;
-        var precioFinal = precioOperacion * (1 + alicIva);
+        var precioIIBB = precioGrano * valorFactor + precioGrano * valorGrado
+        var precioFinal = precioOperacion * (1 + alicIva) - precioIIBB * (1 + alicIva) * factorCorIIBB * alicIIBB;
+        
 
         cantidadGrano = totalFactura / precioFinal;
         console.log("Total a liquidar: " + cantidadGrano.toFixed(3) + "tn");
