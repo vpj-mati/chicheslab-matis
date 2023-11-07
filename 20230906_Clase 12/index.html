@@ -9,43 +9,37 @@
 <body>
     <h1>Ejemplo JAVA SCRIPT</h1>
 
-
-
-
-
     <script>
         
         const alicIva = 0.105;
         const factorCorIIBB = 0.8;
         const sellado = 70;
 
-        var totalFactura;
+        var totalPEE;
         var precioGrano;
         var cantidadGrano;
-        
-        
-        var totalFac1 = 100000;
-        var difCambioFac1 = 0;
-        var percIVAFac1 = 0;
+    
+        var TotalesFacturas = [];
 
-        var arrTF = [1000, 9000, 10, 800];
-        
-        //candidata para continuar con la siguiente clase
-        var grill = [
-                        [1000,0,0],
-                        [900,10,0],
-                        [8000,0,0]
-                    ]
+        var factura = { fechaVto: "30-11-2023", numeroFactura: "0001A00001234", importe: 50000, difCambio: 90, percIva: 500 };
+        var factura1 = { fechaVto: "30-11-2023", numeroFactura: "0001A00001234", importe: 25000, difCambio: 10, percIva: 250 };
+        var factura2 = { fechaVto: "30-11-2023", numeroFactura: "0001A00001234", importe: 25000, difCambio: 10, percIva: 250 };
 
-        var suma = 0;
+        TotalesFacturas.push(factura);
+        TotalesFacturas.push(factura1);
+        TotalesFacturas.push(factura2);
         
-        for (let i = 0; i < arrTF.length; i++) {
-            suma = suma + arrTF[i];
+        var sumaFacturas = 0;
+        var sumaDifCambio = 0;
+        var sumaPercIva = 0;
+
+        for (let i = 0; i < TotalesFacturas.length; i++) {
+            sumaFacturas = sumaFacturas + TotalesFacturas[i].importe;
+            sumaDifCambio = sumaDifCambio + TotalesFacturas[i].difCambio;
+            sumaPercIva = sumaPercIva + TotalesFacturas[i].percIva;
         }
-        
-        console.log(suma);
-
-        totalFactura = totalFac1 + difCambioFac1 + percIVAFac1 + sellado;
+       
+        totalPEE = sumaFacturas + sumaDifCambio + sumaPercIva + sellado;
 
         precioGrano = 65000;
 
@@ -95,7 +89,7 @@
         var precioFinal = precioOperacion * (1 + alicIva) - precioIIBB * (1 + alicIva) * factorCorIIBB * alicIIBB;
         
 
-        cantidadGrano = totalFactura / precioFinal;
+        cantidadGrano = totalPEE / precioFinal;
         console.log("Total a liquidar: " + cantidadGrano.toFixed(3) + "tn");
 
     </script>
