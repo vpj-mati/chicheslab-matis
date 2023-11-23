@@ -1,16 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    
-</head>
-<body>
-    <h1>Ejemplo JAVA SCRIPT</h1>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Planilla Cálculo PEE</h1>
+
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">$</span>
+        <input id="txtPrecioGrano" type="number" class="form-control" placeholder="0.00" aria-label="PrecioGrano" aria-describedby="basic-addon1">
+      </div>
+
+
+      <button type="button" class="btn btn-primary" onclick="CalcularKilos()">Calcular</button>
+        <br>
+        <br>
+      <div class="input-group mb-3">
+        <input id="txtTotalKilos" type="text" disabled class="form-control" placeholder="0.000" aria-label="Username" aria-describedby="basic-addon1">
+        <span class="input-group-text" id="basic-addon1">Kgs.</span>
+      </div>
+
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
 
     <script>
-        
+      function CalcularKilos() {
         const alicIva = 0.105;
         const factorCorIIBB = 0.8;
         const sellado = 70;
@@ -18,27 +47,45 @@
         var totalPEE;
         var precioGrano;
         var cantidadGrano;
-    
+
         var TotalesFacturas = [];
 
-        var factura = { fechaVto: "30-11-2023", numeroFactura: "0001A00001234", importe: 50000, difCambio: 90, percIva: 500 };
-        var factura1 = { fechaVto: "30-11-2023", numeroFactura: "0001A00001234", importe: 25000, difCambio: 10, percIva: 250 };
-        var factura2 = { fechaVto: "30-11-2023", numeroFactura: "0001A00001234", importe: 25000, difCambio: 10, percIva: 250 };
+        var factura = {
+          fechaVto: "30-11-2023",
+          numeroFactura: "0001A00001234",
+          importe: 50000,
+          difCambio: 90,
+          percIva: 500,
+        };
+        var factura1 = {
+          fechaVto: "30-11-2023",
+          numeroFactura: "0001A00001234",
+          importe: 25000,
+          difCambio: 10,
+          percIva: 250,
+        };
+        var factura2 = {
+          fechaVto: "30-11-2023",
+          numeroFactura: "0001A00001234",
+          importe: 25000,
+          difCambio: 10,
+          percIva: 250,
+        };
 
         TotalesFacturas.push(factura);
         TotalesFacturas.push(factura1);
         TotalesFacturas.push(factura2);
-        
+
         var sumaFacturas = 0;
         var sumaDifCambio = 0;
         var sumaPercIva = 0;
 
         for (let i = 0; i < TotalesFacturas.length; i++) {
-            sumaFacturas = sumaFacturas + TotalesFacturas[i].importe;
-            sumaDifCambio = sumaDifCambio + TotalesFacturas[i].difCambio;
-            sumaPercIva = sumaPercIva + TotalesFacturas[i].percIva;
+          sumaFacturas = sumaFacturas + TotalesFacturas[i].importe;
+          sumaDifCambio = sumaDifCambio + TotalesFacturas[i].difCambio;
+          sumaPercIva = sumaPercIva + TotalesFacturas[i].percIva;
         }
-       
+
         totalPEE = sumaFacturas + sumaDifCambio + sumaPercIva + sellado;
 
         precioGrano = 65000;
@@ -50,49 +97,54 @@
         var alicIIBB = 0.008;
         var tipoGrano = "Trigo";
 
-
-        if(grado == 1)
-        {
-            if(tipoGrano == "Trigo")
-            {
-                valorGrado = 0.015;
-            }
-            else
-            {
-                valorGrado = 0.01;
-            }   
+        if (grado == 1) {
+          if (tipoGrano == "Trigo") {
+            valorGrado = 0.015;
+          } else {
+            valorGrado = 0.01;
+          }
         }
 
-        if(grado == 2)
-        {
-            valorGrado = 0;
+        if (grado == 2) {
+          valorGrado = 0;
         }
-        
-        if(grado == 3)
-        {
-            if(tipoGrano == "Trigo")
-            {
-                valorGrado = -0.01;
-            }
-            else
-            {
-                valorGrado = -0.015;
-            }   
+
+        if (grado == 3) {
+          if (tipoGrano == "Trigo") {
+            valorGrado = -0.01;
+          } else {
+            valorGrado = -0.015;
+          }
         }
-        
-        
+
         var factor = 100;
         var valorFactor = factor / 100;
         var precioCalidad = precioGrano * (1 + valorGrado) * valorFactor;
         var precioOperacion = precioCalidad - precioGrano * comision - flete;
-        var precioIIBB = precioGrano * valorFactor + precioGrano * valorGrado
-        var precioFinal = precioOperacion * (1 + alicIva) - precioIIBB * (1 + alicIva) * factorCorIIBB * alicIIBB;
-        
+        var precioIIBB = precioGrano * valorFactor + precioGrano * valorGrado;
+        var precioFinal =
+          precioOperacion * (1 + alicIva) -
+          precioIIBB * (1 + alicIva) * factorCorIIBB * alicIIBB;
 
         cantidadGrano = totalPEE / precioFinal;
         console.log("Total a liquidar: " + cantidadGrano.toFixed(3) + "tn");
+        
+        AsignarValor(cantidadGrano.toFixed(3));
+
+      }
+
+
+      function AsignarValor(kilos) {
+        var txtKg = document.getElementById("txtTotalKilos");
+        txtKg.value = kilos;
+      }
+
+
+      function ObtenerPrecioGrano() {
+        var txtPG = document.getElementById("txtPrecioGrano");
+        return txtPG.value;
+      }
 
     </script>
-    
-</body>
+  </body>
 </html>
