@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculo PEE</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container" x-data="app">
+
+
+        <div class="p-5 text-center bg-body-tertiary rounded-3 my-3">
+            <h1 class="text-body-emphasis">Planilla Cálculo PEE</h1>
+        </div>
+
+        <div class="accordion mb-3" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapseOne">
+                        <strong>Condiciones comerciales</strong>
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                    <div class="accordion-body row row-cols-1 row-cols-lg-5 g-2">
+
+                        <div class="form-floating">
+                            <select id="txtGrano" class="form-select" aria-label="Select a Value" x-model.number="grano">
+                                <template x-for="grano in arrGranos" :key="grano">
+                                    <option x-text="grano"></option>
+                                </template>
+                            </select>
+                            <label for="txtGrano">Tipo Grano:</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <input id="txtPrecioGrano" class="form-control" type="number"
+                                x-model.number="precioGrano" />
+                            <label for="txtPrecioGrano">Precio:</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <input id="txtComision" class="form-control" type="number"
+                                x-model.number="comision" />
+                            <label for="txtComision">Comisión:</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <input id="txtFlete" class="form-control" type="number" 
+                                x-model.number="flete" />
+                            <label for="txtFlete">Flete:</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <select id="txtGrado" class="form-select" aria-label="Select a Value" x-model="grado">
+                                <template x-for="grado in arrGrados" :key="grado">
+                                    <option x-text="grado"></option>
+                                </template>
+                            </select>
+                            <label for="txtGrado">Grado:</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <input id="txtFactor" class="form-control" type="number"
+                                x-model.number="factor" />
+                            <label for="txtFactor">Factor:</label>
+                        </div>
+
+                        <div class="form-floating">
+                            <input id="txtAlicIIBB" class="form-control" type="number"
+                                x-model.number="alicIIBB" />
+                            <label for="txtAlicIIBB">Alicuota IIBB (LUA):</label>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapseTwo">
+                        <strong>Facturas</strong>
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show">
+                    <div class="accordion-body">
+
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="h3 mb-3" x-show="arrFacturas.length === 0">
+                                    No hay facturas para mostrar.
+                                </div>
+                                <template x-for="(factura, index) in arrFacturas">
+                                    <div class="card mb-3">
+                                        <div class="card-body">
+                                            <div class="row row-cols-1 row-cols-lg-5 g-2">
+                                                <div class="form-floating">
+                                                    <input type="date" disabled class="form-control" id="txtFechaVto"
+                                                        x-model="factura.fechaVto" />
+                                                    <label for="txtFechaVto">Fecha vencimiento</label>
+                                                </div>
+                                                <div class="form-floating">
+                                                    <input type="text" disabled class="form-control" id="txtNumFact"
+                                                        x-model="factura.numeroFactura" />
+                                                    <label for="txtNumFact">Número de Factura</label>
+                                                </div>
+                                                <div class="form-floating">
+                                                    <input type="number" disabled class="form-control" id="txtImporte"
+                                                        x-model.number="factura.importe" />
+                                                    <label for="txtImporte">Importe</label>
+                                                </div>
+                                                <div class="form-floating">
+                                                    <input type="number" disabled class="form-control" id="txtDifCambio"
+                                                        x-model.number="factura.difCambio" />
+                                                    <label for="txtDifCambio">Diferencia de cambio</label>
+                                                </div>
+                                                <div class="form-floating">
+                                                    <input type="number" disabled class="form-control" id="txtPercIva"
+                                                        x-model.number="factura.percIva" />
+                                                    <label for="txtPercIva">Percepcion IVA</label>
+                                                </div>
+                                                <div class="form-floating mb-3">
+                                                    <input type="text" disabled class="form-control" id="txtObs"
+                                                        x-model="factura.observaciones" />
+                                                    <label for="txtObs">Observaciones</label>
+                                                </div>
+                                            </div>
+                                            <button type="button" @click="InitEditarFactura(index, factura)"
+                                                class="btn btn-outline-primary" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal">Editar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </template>
+
+                                <button type="button" @click="InitEditarFactura(null, null)"
+                                    class="btn btn-outline-primary" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">
+                                    Agregar Factura
+                                </button>
+
+                                <div class="modal fade" id="exampleModal" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel"
+                                                    x-text="facturaEditing.state"></h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row row-cols-1 g-2">
+                                                    <div class="form-floating">
+                                                        <input type="date" class="form-control" id="txtFechaVto"
+                                                            x-model="facturaEditing.factura.fechaVto">
+                                                        <label for="txtFechaVto">Fecha vencimiento</label>
+                                                    </div>
+                                                    <div class="form-floating">
+                                                        <input type="text" class="form-control" id="txtNumFact"
+                                                            x-model="facturaEditing.factura.numeroFactura">
+                                                        <label for="txtNumFact">Número de Factura</label>
+                                                    </div>
+                                                    <div class="form-floating">
+                                                        <input type="number" class="form-control" id="txtImporte"
+                                                            x-model.number="facturaEditing.factura.importe">
+                                                        <label for="txtImporte">Importe</label>
+                                                    </div>
+                                                    <div class="form-floating">
+                                                        <input type="number" class="form-control" id="txtDifCambio"
+                                                            x-model="facturaEditing.factura.difCambio">
+                                                        <label for="txtDifCambio">Diferencia de cambio</label>
+                                                    </div>
+                                                    <div class="form-floating">
+                                                        <input type="number" class="form-control" id="txtPercIva"
+                                                            x-model.number="facturaEditing.factura.percIva">
+                                                        <label for="txtPercIva">Percepcion IVA</label>
+                                                    </div>
+                                                    <div class="form-floating mb-3">
+                                                        <input type="text" class="form-control" id="txtObs"
+                                                            x-model="facturaEditing.factura.observaciones">
+                                                        <label for="txtObs">Observaciones</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer justify-content-between">
+                                                <span class="justify-content-start">
+                                                    <button type="button" class="btn btn-default text-danger"
+                                                        data-bs-dismiss="modal" @click="BorrarFactura"
+                                                        x-show="isEditingState">Borrar</button>
+                                                </span>
+                                                <span>
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Cerrar</button>
+                                                    <button type="button" class="btn btn-primary"
+                                                        data-bs-dismiss="modal" @click="GuardarFactura">Guardar
+                                                        cambios</button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapseThree">
+                        <strong>Resultado</strong>
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show">
+                    <div class="accordion-body">
+
+                        <div class="input-group mb-3">
+                            <button type="button" class="btn btn-primary" @click="CalcularCantidadGrano">CALCULAR</button>
+
+                            <div class="form-floating">
+                                <input id="txtTotalKgs" readonly class="form-control" type="number" placeholder="0.0"
+                                    value="0" x-model.number="cantidadGrano"/>
+                                <label for="txtTotalKgs">Ton.:</label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('app', () => ({
+                
+                arrGranos: ['Trigo', 'Soja', 'Maiz', 'Maiz Colorado', 'Sorgo'],
+                grano: 'Trigo',
+                precioGrano: 0.00,
+                comision: 0.00,
+                flete: 0.00,
+                arrGrados: [1, 2, 3],
+                grado: 1,
+                factor: 0.00,
+                alicIIBB: 0.00,
+                arrFacturas: [],
+                facturaEditing: {
+                    state: "Agregar Factura",
+                    index: null,
+                    factura: {},
+                },
+                cantidadGrano: 0.00,
+                
+                get isEditingState() { return this.facturaEditing.index !== null },
+
+                InitEditarFactura(index, factura) {
+                    if (index === null) {
+                        // Obtener la fecha actual
+                        var fechaActual = new Date();
+
+                        // Obtener los componentes de la fecha
+                        var year = fechaActual.getFullYear();
+                        var month = String(fechaActual.getMonth() + 1).padStart(2, '0'); // Se suma 1 ya que los meses van de 0 a 11
+                        var day = String(fechaActual.getDate()).padStart(2, '0');
+
+                        // Formatear la fecha como "yyyy-mm-dd"
+                        var fechaFormateada = `${year}-${month}-${day}`;
+
+                        this.facturaEditing = {
+                            state: "Agregar Factura",
+                            index: null,
+                            factura: {
+                                fechaVto: fechaFormateada,
+                                numeroFactura: "0000A00000000",
+                                importe: 0.00,
+                                difCambio: 0.00,
+                                percIva: 0.00,
+                                observaciones: ""
+                            }
+                        }
+                    } else {
+                        this.facturaEditing = {
+                            state: "Editar Factura",
+                            index: index,
+                            factura: {
+                                fechaVto: factura.fechaVto,
+                                numeroFactura: factura.numeroFactura,
+                                importe: factura.importe,
+                                difCambio: factura.difCambio,
+                                percIva: factura.percIva,
+                                observaciones: factura.observaciones
+                            }
+                        }
+                    }
+                },
+
+                GuardarFactura() {
+                    if (this.facturaEditing.index === null) {
+                        this.arrFacturas.push(this.facturaEditing.factura);
+                    } else {
+                        this.arrFacturas[this.facturaEditing.index] = this.facturaEditing.factura;
+                    }
+                },
+
+                BorrarFactura() {
+                    this.arrFacturas.splice(this.facturaEditing.index, 1);
+                },
+
+                CalcularCantidadGrano() {
+                    
+                    const alicIva = 0.105;
+                    const factorcorIIBB = 0.8;
+                    const sellado = 70;
+
+                    var sumaFacturas = 0;
+                    var sumaDifCambio = 0;
+                    var sumapercIva = 0;
+                    for (let i = 0; i < this.arrFacturas.length; i++) {
+                        sumaFacturas = sumaFacturas + this.arrFacturas[i].importe;
+                        sumaDifCambio = sumaDifCambio + this.arrFacturas[i].difCambio;
+                        sumapercIva = sumapercIva + this.arrFacturas[i].percIva;
+                    }
+                    var totalPEE = sumaFacturas + sumaDifCambio + sumapercIva + sellado;
+
+                    
+                    var valorGrado;
+                    if (this.grado == 1) {
+                        if (this.grano == "Trigo") {
+                            valorGrado = 0.015;
+                        }
+                        else {
+                            valorGrado = 0.01;
+                        }
+                    }
+                    if (this.grado == 2) {
+                        valorGrado = 0;
+                    }
+                    if (this.grado == 3) {
+                        if (this.grano == "Trigo") {
+                            valorGrado = -0.01;
+                        }
+                        else {
+                            valorGrado = -0.015;
+                        }
+                    }
+
+                    var valorFactor = this.factor / 100;
+                    var precioCalidad = this.precioGrano * (1 + valorGrado) * valorFactor;
+                    var precioOperacion = precioCalidad - this.precioGrano * (this.comision / 100) - this.flete;
+                    var precioIIBB = this.precioGrano * valorFactor + this.precioGrano * (valorGrado)
+                    var precioFinal = precioOperacion * (1 + alicIva) - precioIIBB * (1 + alicIva) * factorcorIIBB * (this.alicIIBB / 100);
+
+                    this.cantidadGrano = parseFloat((totalPEE / precioFinal).toFixed(3));
+                },
+
+            }))
+        });
+
+    </script>
+</body>
+
+</html>
