@@ -1,5 +1,5 @@
 {
-  "id": "/",
+  "id": "https://vpj-mati.github.io/chicheslab-matis/",
   "name": "ACA - Cálculo PEE - DEV",
   "short_name": "ACA - Cálculo PEE - DEV",
   "description": "Servicio de Cálculo PEE - DEV",
@@ -7,7 +7,7 @@
   "display": "standalone",
   "orientation": "portrait",
   "lang": "es",
-  "scope": "/",
+  "scope": "https://vpj-mati.github.io/chicheslab-matis/",
   "theme_color": "#282c87",
   "background_color": "#282c87",
   "prefer_related_applications": false,
