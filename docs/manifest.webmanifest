@@ -40,7 +40,7 @@
       "sizes": "192x192"
     },
     {
-      "src": "chicheslab-matis/logo512.png",
+      "src": "/chicheslab-matis/logo512.png",
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "any"
