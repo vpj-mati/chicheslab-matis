@@ -3,7 +3,7 @@
   "name": "ACA - Cálculo PEE - DEV",
   "short_name": "ACA - Cálculo PEE - DEV",
   "description": "Servicio de Cálculo PEE - DEV",
-  "start_url": "/",
+  "start_url": "https://vpj-mati.github.io/chicheslab-matis/",
   "display": "standalone",
   "orientation": "portrait",
   "lang": "es",
@@ -55,7 +55,7 @@
       "name": "Start",
       "short_name": "Start",
       "description": "Jump direction into starting session",
-      "url": "/",
+      "url": "https://vpj-mati.github.io/chicheslab-matis/",
       "icons": [
         {
           "src": "/chicheslab-matis/logo512.png",
