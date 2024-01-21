@@ -1,0 +1,73 @@
+{
+  "id": "/",
+  "name": "ACA - Cálculo PEE - DEV",
+  "short_name": "ACA - Cálculo PEE - DEV",
+  "description": "Servicio de Cálculo PEE - DEV",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "lang": "es",
+  "scope": "/",
+  "theme_color": "#282c87",
+  "background_color": "#282c87",
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "categories": [
+    "utilities"
+  ],
+  "screenshots": [
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "serviceworker": "service-worker.js",
+  "icons": [
+    {
+      "src": "logo64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "logo144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any"
+    }
+  ],
+  "display_override": [
+    "window-controls-overlay"
+  ],
+  "protocol_handlers": [
+    {
+      "protocol": "mailto",
+      "url": "/newEmail?to=%s"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Start",
+      "short_name": "Start",
+      "description": "Jump direction into starting session",
+      "url": "/",
+      "icons": [
+        {
+          "src": "logo512.png",
+          "sizes": "512x512"
+        }
+      ]
+    }
+  ],
+  "dir": "auto"
+}
