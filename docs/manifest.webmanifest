@@ -17,30 +17,30 @@
   ],
   "screenshots": [
     {
-      "src": "logo512.png",
+      "src": "chicheslab-matis/logo512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
-  "serviceworker": "service-worker.js",
+  "serviceworker": "chicheslab-matis/service-worker.js",
   "icons": [
     {
-      "src": "logo64.png",
+      "src": "chicheslab-matis/logo64.png",
       "sizes": "64x64",
       "type": "image/png"
     },
     {
-      "src": "logo144.png",
+      "src": "chicheslab-matis/logo144.png",
       "sizes": "144x144",
       "type": "image/png"
     },
     {
-      "src": "logo192.png",
+      "src": "chicheslab-matis/logo192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "chicheslab-matis/logo512.png",
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "any"
@@ -63,7 +63,7 @@
       "url": "/",
       "icons": [
         {
-          "src": "logo512.png",
+          "src": "chicheslab-matis/logo512.png",
           "sizes": "512x512"
         }
       ]
